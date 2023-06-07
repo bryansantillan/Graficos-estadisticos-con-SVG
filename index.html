@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gráficos estadísticos con SVG</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=SF+UI+Text&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap">
+
+
+    <link rel="stylesheet" href="style.css" />
+    <script src="index.js"></script>
+    <script src="JQuery/jquery-1.6.3.min.js"></script>
+    <script>
+        $(function () {
+            $("body").hide().fadeIn(3000);
+        });
+    </script>
+    <link rel="icon" HREF="media/logo.png" />
+</head>
+
+<body>
+    <header>
+        <div class="titulo">
+            <h1>Gráficos estadísticos con SVG</h1>
+            <p>gráficos reescalables sin pérdida de calidad </p>
+        </div>
+        <div class="navegacion">
+            <nav>
+                <a href="#Inicio">Inicio</a>
+                <a href="#Sobre-nosotros">Sobre nosotros</a>
+                <a href="#Graficos-estadisticos">Gráficos estadísticos</a>
+                <a href="#seccionVideo">Multimedia</a>
+                <a href="#Empezar">Empezar</a>
+            </nav>
+        </div>
+
+    </header>
+    <section id="Inicio">
+        <div class="container">
+            <h1>Gráficos estadísticos con SVG</h1>
+            <p>Una plataforma web capaz de crear gráficos estadísticos reescalables y personalizados para los datos
+                aportados por el usuario, usando distintas librerías como D3.js</p>
+        </div>
+    </section>
+    <section id="Sobre-nosotros">
+        <div class="container">
+            <div class="texto">
+                <h2>Obtenga <span class="color-acento">gráficos estadísticos reescalables y exportables </span>a
+                    proyectos propios</h2>
+                <p>Los gráficos SVG son una buena alternativa frente a las imágenes rasterizadas. Tienen la ventaja que
+                    son reescalables sin perder calidad. <br>
+                    El sitio web es una herramienta a tener en cuenta si se desea generar un gráfico estadístico que se
+                    pueda exportar a un proyecto web propio.
+                </p>
+            </div>
+            <div class="img-container"></div>
+    </section>
+    <section id="Graficos-estadisticos">
+        <div class="container">
+            <h1> <span class="color-acento">Gráficos estadísticos disponibles:</span></h1>
+            <p>Ambos gráficos son creados con SVG, serán reescalables.</p>
+            <div class="contenido">
+                <div class="columna">
+                    <h2><span class="color-acento">Gráfico de barras</span></h1>
+                        <p>Un gráfico de barras es una representación visual que utiliza barras rectangulares para
+                            mostrar la comparación o relación de diferentes categorías o datos.
+                            La altura de cada barra representa la magnitud o frecuencia de la variable representada.</p>
+                        <form action="graficos\graficos de barras\index.html">
+                            <button> Gráfico de barras </button>
+                        </form>
+                </div>
+
+                <div class="columna">
+                    <h2><span class="color-acento">Gráfico de tarta</span></h1>
+                        <p>Un gráfico de tarta es una representación visual que utiliza sectores circulares para mostrar
+                            la proporción o distribución de diferentes categorías o datos.
+                            Cada sector representa una parte del total y su tamaño es proporcional a la magnitud de la
+                            variable representada.</p>
+                        <form action="graficos\grafico de tarta\graficostarta.html ">
+                            <button>Gráfico de tarta </button>
+                        </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="seccionVideo">
+        <h1>Video demostración <span class="color-acento"> de la primera parte </span> </h1>
+        <div id="Video">
+            <video id="videoEjemplo" src="media/video.mp4">
+            </video>
+            <nav>
+                <div class="botones">
+                    <button type="button" class="reproducir">⏯️</button>
+                </div>
+                <div class="barra">
+                    <div class="progreso">
+
+                    </div>
+                </div>
+
+            </nav>
+
+        </div>
+
+    </section>
+
+    <section id="Empezar">
+        <div class="container">
+            <div class="texto">
+                <h1>
+                    ¿Listo para empezar?
+                </h1>
+
+                <p>Puede representar sus datos en gráficos estadísticos de forma gratuita ahora mismo.</p>
+
+                <form action="https://www.uah.es/es/" target="_blank">
+
+
+                    <button>Universidad de Alcalá </button>
+                </form>
+
+                <form action="graficos\graficos de barras\index.html">
+                    <button> Gráfico de barras </button>
+                </form>
+
+                <form action="graficos\grafico de tarta\graficostarta.html ">
+                    <button>Gráfico de tarta </button>
+                </form>
+
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>Universidad de Alcalá</p>
+
+    </footer>
+
+</body>
+
+</html>

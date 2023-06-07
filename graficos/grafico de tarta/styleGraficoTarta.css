@@ -1,0 +1,65 @@
+
+  label {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #444;
+  }
+  /* Color de entradas */
+  #valor1 { 
+    color: blue;
+  }
+   
+  #valor2 { 
+    color: green;
+  }
+   
+  #valor3 { 
+    color: red;
+  }
+
+  #valor4 { 
+    color: yellow;
+  }
+
+  #valor5 { 
+    color: blueviolet;
+  }
+ 
+
+  #valor6 { 
+    color: black;
+  }
+   
+  #valor7 { 
+    color: aqua;
+  }
+   
+  #valor8 { 
+    color: orange;
+  }
+
+  #valor9 { 
+    color: deeppink;
+  }
+
+  #valor10 { 
+    color: gray;
+  }
+
+  
+  input[type="number"] {
+    width: 80px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  textarea {
+    width: 100%;
+    height: 150px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: none;
+  }
+  

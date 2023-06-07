@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styleGraficos.css">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Librería de D3.js -->
+    <script src="https://d3js.org/d3.v3.min.js" type="text/javascript"></script>
+    <!-- Librería de D3 tip (tooltips)-->
+    <script src="./js/d3-tip.js" type="text/javascript"></script>
+    <link rel="icon" href="../../media/logo.png" />
+    <title>Grafico de barras</title>
+</head>
+
+<body>
+    <header>
+        <div class="titulo">
+            <h1>Gráficos estadísticos con SVG</h1>
+            <p>gráficos reescalables portables </p>
+        </div>
+        <div class="navegacion">
+            <form action="../../index.html">
+                <button> Inicio </button>
+            </form>
+            <form action="../grafico de tarta/graficostarta.html">
+                <button> Gráficos de tarta </button>
+            </form>
+        </div>
+    </header>
+
+    <div class="cuerpo">
+        <h1>Gráfico de barras</h1>
+        <h2>Generador de gráfico de barras desde una archivo JSON</h2>
+        <!-- Cargar el fichero JSON -->
+        <input type="file" id="archivo" accept=".json" class="custom-file-input">
+        <button onclick="cargarArchivoJSON()" class="botonGenerar">Cargar archivo</button>
+        <!-- El gráfico SVG se dibujará aquí -->
+        <div id="contenedorGraficoSVG">
+            <svg></svg>
+        </div>
+        <!-- Textarea, donde aparecerá el código SVG -->
+        <textarea id="textAreaJSON" style="width: 700px; height: 200px;"></textarea>
+        <!-- Botones -->
+        <button class="botonCopiar" id="botonCopiarJSON">📋Copiar</button>
+        <button class="botonLimpiar" id="botonLimpiarJSON">🗑️Limpiar contenido</button>
+        <button id="botonDescargarJSON">⬇️ Descargar SVG</button>
+        <script src="script.js"></script>
+
+        <h2>Generador de gráfico de barras según la entrada introducida</h2>
+        <p>Introduzca el número de entradas que desea que tenga el gráfico:</p>
+        <div id="container">
+            <select id="numeroEntradas">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+            </select>
+            <br><br>
+            <div id="entradas"></div>
+            <br><br>
+            <button class="botonGenerar" id="botonGenerarSimple">Generar gráfico</button>
+            <br><br>
+            <!--El gráfico SVG se dibujará aquí -->
+            <div id="containerGrafico">
+                <svg id="graficoBarra" width="910" height="400"></svg>
+            </div>
+        </div>
+        <!-- Textarea, donde aparecerá el código SVG -->
+        <textarea id="textAreaSimple" style="width: 700px; height: 200px;"></textarea>
+        <!-- Botones -->
+        <button class="botonCopiar" id="botonCopiar">📋Copiar</button>
+        <button class="botonLimpiar" id="botonLimpiar" type="button">🗑️Limpiar contenido</button>
+        <button id="descargarSencillo">⬇️ Descargar SVG</button>
+        <script src="scriptGraficoBarrasSencillo.js"></script>
+
+    </div>
+
+</body>
+
+</html>

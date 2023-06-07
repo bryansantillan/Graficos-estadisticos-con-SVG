@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Graficos de tarta</title>
+
+  <link rel="stylesheet" href="../styleGraficos.css">
+  <link rel="stylesheet" href="styleGraficoTarta.css">
+  <link rel="icon" href="../../media/logo.png" />
+</head>
+
+<body>
+
+  <header>
+    <div class="titulo">
+      <h1>Gráficos estadísticos con SVG</h1>
+      <p>gráficos reescalables portables </p>
+    </div>
+    <div class="navegacion">
+
+      <form action="../../index.html">
+        <button> Inicio </button>
+      </form>
+      <form action="../graficos de barras/index.html">
+        <button> Gráficos de barras </button>
+      </form>
+
+    </div>
+
+  </header>
+  <h1>Generador de diagramas de tarta</h1>
+  <form id="formulario">
+    <label id=>Valor 1:</label>
+    <input type="number" value="0" id="valor1" min="0">
+    <br>
+    <label>Valor 2:</label>
+    <input type="number" value="0" id="valor2" min="0">
+    <br>
+    <label>Valor 3:</label>
+    <input type="number" value="0" id="valor3" min="0">
+    <br>
+    <label>Valor 4:</label>
+    <input type="number" value="0" id="valor4" min="0">
+    <br>
+    <label>Valor 5:</label>
+    <input type="number" value="0" id="valor5" min="0">
+    <br>
+
+    <label id=>Valor 6:</label>
+    <input type="number" value="0" id="valor6" min="0">
+    <br>
+    <label>Valor 7:</label>
+    <input type="number" value="0" id="valor7" min="0">
+    <br>
+    <label>Valor 8:</label>
+    <input type="number" value="0" id="valor8" min="0">
+    <br>
+    <label>Valor 9:</label>
+    <input type="number" value="0" id="valor9" min="0">
+    <br>
+    <label>Valor 10:</label>
+    <input type="number" value="0" id="valor10" min="0">
+    <br>
+
+
+    <button type="submit" class="botonGenerar" id="draw-button">Generar grafico</button>
+
+
+    <div id="chart-container">
+      <svg width="700" height="700" viewBox="0 0 700 700">
+        <g id="chart">
+        </g>
+      </svg>
+    </div>
+
+    <textarea id="svg-code" style="width: 700px; height: 200px;"></textarea>
+    <button class="botonCopiar" id="copy-button">📋Copiar</button>
+    <button class="botonLimpiar" id="limpiar" type="button">🗑️Limpiar contenido</button>
+    <button id="descargar">⬇️ Descargar SVG</button>
+
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>
