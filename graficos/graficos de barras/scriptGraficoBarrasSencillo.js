@@ -1,3 +1,5 @@
+graficosSVGgenerados = 0;
+
 const botonGenerar = document.getElementById('botonGenerarSimple');
 const numeroEntradas = document.getElementById('numeroEntradas');
 const entradasContenedor = document.getElementById('entradas');
@@ -7,21 +9,24 @@ const textarea1 = document.getElementById('textAreaSimple');
 const botonDescargar1 = document.getElementById('descargarSencillo');
 //Descargar SVG
 botonDescargar1.addEventListener('click', () => {
-  const contenido = textarea1.value;
-  const nombreArchivo = 'grafico-de-barras.svg';
 
-  //Blob con el contenido de textarea
-  const blob = new Blob([contenido], { type: 'image/svg+xml' });
+  if (graficosSVGgenerados >= 1) {
+    const contenido = textarea1.value;
+    const nombreArchivo = 'grafico-de-barras.svg';
 
-  //Crear enlace para descargar el archivo SVG
-  const enlaceDescarga = document.createElement('a');
-  enlaceDescarga.href = URL.createObjectURL(blob);
-  enlaceDescarga.download = nombreArchivo;
-  enlaceDescarga.click();
+    //Blob con el contenido de textarea
+    const blob = new Blob([contenido], { type: 'image/svg+xml' });
 
-  //Limpiar el objeto URL y elimina el enlace temporal
-  URL.revokeObjectURL(enlaceDescarga.href);
-  enlaceDescarga.remove();
+    //Crear enlace para descargar el archivo SVG
+    const enlaceDescarga = document.createElement('a');
+    enlaceDescarga.href = URL.createObjectURL(blob);
+    enlaceDescarga.download = nombreArchivo;
+    enlaceDescarga.click();
+
+    //Limpiar el objeto URL y elimina el enlace temporal
+    URL.revokeObjectURL(enlaceDescarga.href);
+    enlaceDescarga.remove();
+  }
 });
 
 
@@ -56,6 +61,9 @@ function validarEntradaNumerica(event) {
 //Botón que genera el gráfico
 botonGenerar.addEventListener('click', () => {
   //Limpia el contenido del SVG previo si lo hubiera
+
+  graficosSVGgenerados = graficosSVGgenerados + 1;
+
   grafico.innerHTML = '';
 
   //Obtiene el número de entradas seleccionado por el usuario
@@ -98,68 +106,26 @@ botonGenerar.addEventListener('click', () => {
   var style = document.createElementNS("http://www.w3.org/2000/svg", "style");
   style.setAttribute('id', 'mi-estilo');
   var css = `
-    svg {
-        border: 1px dashed #000000;
-    }
-    rect {
-        stroke: blueviolet;
-        stroke-width: 2;
-        fill: rgb(226, 164, 255)  ;
-    }
-    rect:hover {
-        fill:  rgb(240, 255, 143) ;
-    }
-    .eje text{
-        font: 10px sans-serif;
-    }
-    
-    .eje path, .eje line {
-        fill: none;
-        stroke: #000;
-        shape-rendering: crispEdges;
-    }
-    
-    .tooltip {
-        font-family: Arial, helvetica, sans-serif;
-        font-size: 10px;
-        padding: 8px;
-        background: rgba(0, 0, 0, 0.7);
-        border: 1px solid #FFFFFF;
-        box-shadow: rgba(0, 0, 0, 0.5) 1px 1px 4px;
-        color: #FFFFFF;
-        border-radius: 4px;
-        
-    }
-    .custom-file-input::-webkit-file-upload-button {
-        background-color: blueviolet;
-        color: #fff;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 4px;grafico
-        cursor: pointer;
-    }
-    
-    
-    #myFile {
-        background-color: rgb(183, 96, 255); /* Color de fondo verde */
-        color: white; /* Color del texto en blanco */
-        padding: 10px 10px; /* Espacio de relleno para el botón */
-        border: none; /* Quita el borde del botón */
-        border-radius: 5px; /* Agrega bordes redondeados */
-        font-size: 16px; /* Tamaño de fuente */
-        
-    }
-    
-    #myFile:hover {
-        background-image: linear-gradient(0deg,
-        rgba(253, 255, 225, 0.4),
-        rgba(253, 255, 225, 0.1));
-    }
-    
-    .custom-file-input::-webkit-file-upload-button:hover,  button:hover { 
-        background-color: rgb(255, 255, 153);
-        color: blueviolet;
-    }`;
+  //svg {
+    //  border: 1px dashed #000000;
+  //}
+  rect {
+      stroke: ${colorSeleccionado3};
+      stroke-width: 2;
+      fill: ${colorSeleccionado1}  ;
+  }
+  rect:hover {
+      fill:  ${colorSeleccionado2} ;
+  }
+  .eje text{
+      font: 10px sans-serif;
+  }
+  
+  .eje path, .eje line {
+      fill: none;
+      stroke: #000;
+      shape-rendering: crispEdges;
+  }`;
 
   style.innerHTML = css;
   const svg = d3.select("#graficoBarra"); // Selecciona el elemento con el id "graficoBarra" y agrega un elemento SVG

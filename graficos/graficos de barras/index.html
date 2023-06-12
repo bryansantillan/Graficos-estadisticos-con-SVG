@@ -14,6 +14,7 @@
     <script src="./js/d3-tip.js" type="text/javascript"></script>
     <link rel="icon" href="../../media/logo.png" />
     <title>Grafico de barras</title>
+
 </head>
 
 <body>
@@ -29,18 +30,44 @@
             <form action="../grafico de tarta/graficostarta.html">
                 <button> Gráficos de tarta </button>
             </form>
+            <form action="../grafico de lineas/index.html">
+                <button> Gráficos de líneas </button>
+            </form>
+            <form action="../grafico de donut/index.html">
+                <button> Gráficos de donut </button>
+            </form>
         </div>
     </header>
 
+    <h1 class="tituloPrincipal">Gráfico de barras</h1>
+    <div id="colores">
+        <form>
+            <h3 style="color: black">Escoja los colores del gráfico:</h3>
+            <div>
+                <label for="colorPicker"> Selecciona un color principal:</label>
+                <input type="color" id="seleccionadorColorJSON1">
+            </div>
+
+            <div>
+                <label for="colorPicker"> Selecciona un color secundario:</label>
+                <input type="color" id="seleccionadorColorJSON2">
+            </div>
+            <div>
+                <label for="colorPicker"> Selecciona un color para los bordes:</label>
+                <input type="color" id="seleccionadorColorJSON3">
+            </div>
+        </form>
+    </div>
+
     <div class="cuerpo">
-        <h1>Gráfico de barras</h1>
-        <h2>Generador de gráfico de barras desde una archivo JSON</h2>
+
+        <h1>Generador de gráfico de barras desde un archivo JSON</h1>
         <!-- Cargar el fichero JSON -->
         <input type="file" id="archivo" accept=".json" class="custom-file-input">
         <button onclick="cargarArchivoJSON()" class="botonGenerar">Cargar archivo</button>
         <!-- El gráfico SVG se dibujará aquí -->
         <div id="contenedorGraficoSVG">
-            <svg></svg>
+            <svg xmlns="http://www.w3.org/2000/svg"></svg>
         </div>
         <!-- Textarea, donde aparecerá el código SVG -->
         <textarea id="textAreaJSON" style="width: 700px; height: 200px;"></textarea>
@@ -50,7 +77,27 @@
         <button id="botonDescargarJSON">⬇️ Descargar SVG</button>
         <script src="script.js"></script>
 
-        <h2>Generador de gráfico de barras según la entrada introducida</h2>
+
+        <h1>Generador de gráfico de barras según CSV</h1>
+
+
+        <input type="file" id="archivoCSV" accept=".csv">
+        <button onclick="cargarArchivoCSV()" class="botonGenerar">Cargar archivo</button>
+        <div id="contenedorGrafico">
+            <svg id="graficoBarras" xmlns="http://www.w3.org/2000/svg"></svg>
+        </div>
+        <!-- Textarea, donde aparecerá el código SVG -->
+        <textarea id="textAreaCSV" style="width: 700px; height: 200px;"></textarea>
+        <!-- Botones -->
+        <button class="botonCopiar" id="botonCopiarCSV">📋Copiar</button>
+        <button class="botonLimpiar" id="botonLimpiarCSV">🗑️Limpiar contenido</button>
+        <button id="botonDescargarCSV">⬇️ Descargar SVG</button>
+
+        <script src="scriptGraficoBarrasCSV.js"></script>
+
+
+
+        <h1>Generador de gráfico de barras según la entrada introducida</h1>
         <p>Introduzca el número de entradas que desea que tenga el gráfico:</p>
         <div id="container">
             <select id="numeroEntradas">
@@ -70,14 +117,14 @@
                 <option value="14">14</option>
                 <option value="15">15</option>
             </select>
-            <br><br>
+
             <div id="entradas"></div>
             <br><br>
             <button class="botonGenerar" id="botonGenerarSimple">Generar gráfico</button>
             <br><br>
             <!--El gráfico SVG se dibujará aquí -->
             <div id="containerGrafico">
-                <svg id="graficoBarra" width="910" height="400"></svg>
+                <svg id="graficoBarra" width="910" height="400" xmlns="http://www.w3.org/2000/svg"></svg>
             </div>
         </div>
         <!-- Textarea, donde aparecerá el código SVG -->

@@ -46,6 +46,7 @@ rect:hover {
 
 
 #archivo {
+  margin-top: 20px;
   background-color: rgb(183, 96, 255);
   /* Color de fondo verde */
   color: white;

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graficos de donut</title>
+    <link rel="stylesheet" href="../styleGraficos.css">
+    <link rel="icon" href="../../media/logo.png" />
+</head>
+
+<body>
+
+    <header>
+        <div class="titulo">
+            <h1>Gráficos estadísticos con SVG</h1>
+            <p>gráficos reescalables portables </p>
+        </div>
+        <div class="navegacion">
+
+            <form action="../../index.html">
+                <button> Inicio </button>
+            </form>
+
+            <form action="../graficos de barras/index.html">
+                <button> Gráficos de barras </button>
+            </form>
+            <form action="../grafico de tarta/graficostarta.html">
+                <button> Gráficos de tarta </button>
+            </form>
+            <form action="../grafico de lineas/index.html">
+                <button> Gráficos de lineas </button>
+            </form>
+        </div>
+
+    </header>
+
+    <h2>Introduzca los valores para crear el gráfico de donut:</h2>
+    <div>
+        <label>Valor 1:</label>
+        <input type="number" min="0" id="dataInput1" placeholder="Ingrese numero 1"> <br>
+        <label>Valor 2:</label>
+        <input type="number" id="dataInput2" placeholder="Ingrese número 2"> <br>
+        <label>Valor 3:</label>
+        <input type="number" min="0" id="dataInput3" placeholder="Ingrese número 3"> <br>
+        <label>Valor 4:</label>
+        <input type="number" min="0" id="dataInput4" placeholder="Ingrese número 4"> <br>
+        <label>Valor 5:</label>
+        <input type="number" min="0" id="dataInput5" placeholder="Ingrese número 5"> <br>
+        <label>Valor 6:</label>
+        <input type="number" min="0" id="dataInput6" placeholder="Ingrese número 6"> <br>
+        <label>Valor 7:</label>
+        <input type="number" min="0" id="dataInput7" placeholder="Ingrese número 7"> <br>
+        <label>Valor 8:</label>
+        <input type="number" min="0" id="dataInput8" placeholder="Ingrese número 8"> <br>
+        <label>Valor 9:</label>
+        <input type="number" min="0" id="dataInput9" placeholder="Ingrese número 9"> <br>
+        <label>Valor 10:</label>
+        <input type="number" min="0" id="dataInput10" placeholder="Ingrese número 10"> <br>
+        <button onclick="generarGrafico()">Generar Gráfico</button>
+    </div>
+    <div id="chart-container">
+        <svg id="chart-svg" width="700" height="820" xmlns="http://www.w3.org/2000/svg">
+        </svg>
+    </div>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <!-- Textarea, donde aparecerá el código SVG -->
+    <textarea id="svg-code" style="width: 700px; height: 200px;"></textarea>
+    <!-- Botones -->
+    <button class="botonCopiar" id="botonCopiarEntrada">📋Copiar</button>
+    <button class="botonLimpiar" id="limpiar" type="button">🗑️Limpiar contenido</button>
+    <button id="descargar">⬇️ Descargar SVG</button>
+
+    <script src="scriptEntrada.js"></script>
+
+    <h1>Generador de gráficos de donut según CSV</h1>
+
+    <div class="container">
+
+        <input type="file" id="archivoCSV" accept=".csv">
+        <button onclick="cargarArchivoCSV()" class="botonGenerar">Cargar archivo</button>
+        <div id="contenedorGraficoSVG">
+            <svg id="graficoDonutCSV" xmlns="http://www.w3.org/2000/svg"></svg>
+
+        </div>
+        <div id="tooltip"></div>
+        <script src="https://d3js.org/d3.v7.min.js"></script>
+
+        <!-- Textarea, donde aparecerá el código SVG -->
+        <textarea id="textAreaCSV" style="width: 700px; height: 200px;"></textarea>
+        <!-- Botones -->
+        <button class="botonCopiar" id="botonCopiarCSV">📋Copiar</button>
+        <button class="botonLimpiar" id="botonLimpiarCSV">🗑️Limpiar contenido</button>
+        <button id="botonDescargarCSV">⬇️ Descargar SVG</button>
+        <script src="script.js"></script>
+
+    </div>
+
+
+
+
+</body>
+
+</html>

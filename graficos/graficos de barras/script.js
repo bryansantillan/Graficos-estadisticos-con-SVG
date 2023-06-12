@@ -1,4 +1,29 @@
 var contadorGraficos = 0;
+
+//Seleccionar el color
+const seleccionadorColorJSON1 = document.getElementById("seleccionadorColorJSON1");
+const seleccionadorColorJSON2 = document.getElementById("seleccionadorColorJSON2");
+const seleccionadorColorJSON3 = document.getElementById("seleccionadorColorJSON3");
+let colorSeleccionado1 = "blueviolet";
+let colorSeleccionado2 = "darkorange";
+let colorSeleccionado3 = "yellow";
+
+seleccionadorColorJSON1.addEventListener("input", function () {
+    colorSeleccionado1 = seleccionadorColorJSON1.value;
+    console.log("Color 1 seleccionado:", colorSeleccionado1);
+});
+
+seleccionadorColorJSON2.addEventListener("input", function () {
+    colorSeleccionado2 = seleccionadorColorJSON2.value;
+    console.log("Color 2 seleccionado:", colorSeleccionado2);
+});
+
+seleccionadorColorJSON3.addEventListener("input", function () {
+    colorSeleccionado3 = seleccionadorColorJSON3.value;
+    console.log("Color 3 seleccionado:", colorSeleccionado3);
+});
+
+
 //Descargar contenido SVG
 const textarea = document.getElementById('textAreaJSON');
 const botonDescargar = document.getElementById('botonDescargarJSON');
@@ -184,16 +209,16 @@ function generarGrafico(datos) {
     var estilo = document.createElementNS("http://www.w3.org/2000/svg", "style");
     estilo.setAttribute('id', 'mi-estilo');
     var css = `
-            svg {
-                border: 1px dashed #000000;
-            }
+            //svg {
+              //  border: 1px dashed #000000;
+            //}
             rect {
-                stroke: blueviolet;
+                stroke: ${colorSeleccionado3};
                 stroke-width: 2;
-                fill: rgb(226, 164, 255)  ;
+                fill: ${colorSeleccionado1}  ;
             }
             rect:hover {
-                fill:  rgb(240, 255, 143) ;
+                fill:  ${colorSeleccionado2} ;
             }
             .eje text{
                 font: 10px sans-serif;
@@ -216,36 +241,10 @@ function generarGrafico(datos) {
                 border-radius: 4px;
                 
             }
-            .custom-file-input::-webkit-file-upload-button {
-                background-color: blueviolet;
-                color: #fff;
-                border: none;
-                padding: 10px 20px;
-                border-radius: 4px;
-                cursor: pointer;
-            }
             
             
-            #archivo {
-                background-color: rgb(183, 96, 255); /* Color de fondo verde */
-                color: white; /* Color del texto en blanco */
-                padding: 10px 10px; /* Espacio de relleno para el botón */
-                border: none; /* Quita el borde del botón */
-                border-radius: 5px; /* Agrega bordes redondeados */
-                font-size: 16px; /* Tamaño de fuente */
-                
-            }
             
-            #archivo:hover {
-                background-image: linear-gradient(0deg,
-                rgba(253, 255, 225, 0.4),
-                rgba(253, 255, 225, 0.1));
-            }
-            
-            .custom-file-input::-webkit-file-upload-button:hover,  button:hover { 
-                background-color: rgb(255, 255, 153);
-                color: blueviolet;
-            }`;
+            `;
     estilo.innerHTML = css;
     //Añadir al SVG         
     svg.append('style').text(css);
