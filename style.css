@@ -180,25 +180,27 @@ header nav a:hover {
 
 #Graficos-estadisticos .container {
     text-align: center;
-    padding: 150px 12px;
+    padding: 0px;
+
+    min-width: 85vw;
 }
 
 #Graficos-estadisticos h1 {
     color: blueviolet;
-    font-size: 3.5em;
+    font-size: 2.5em;
     text-shadow: -1px 0 white, 0 1px white,
         1px 0 white, 0 -1px white;
 }
 
 #Graficos-estadisticos h2 {
     color: blueviolet;
-    font-size: 2em;
+    font-size: 1.5em;
     text-shadow: -1px 0 white, 0 1px white,
         1px 0 white, 0 -1px white;
 }
 
 #Graficos-estadisticos p {
-    font-size: 1.25em;
+    font-size: 1em;
 
     font-style: italic;
     font-weight: lighter;
@@ -206,11 +208,11 @@ header nav a:hover {
 }
 
 #Graficos-estadisticos .contenido {
-    display: flex;
+    display: inline-flex;
     justify-content: space-evenly;
 
-    padding: 80px 40px;
-    margin: 50px;
+    padding: 20px 20px;
+    margin: 1px;
     border-radius: 15px;
     border: 1px solid #ffffff;
 
@@ -265,8 +267,7 @@ header nav a:hover {
 
 /* Seccion de vídeo */
 #seccionVideo {
-    min-height: 100vh;
-
+    min-height: 120vh;
     background-image: linear-gradient(0deg,
             rgba(78, 0, 129, 1),
             rgba(243, 225, 255, 0.9)), url("media/picOfVideo.jpg");
