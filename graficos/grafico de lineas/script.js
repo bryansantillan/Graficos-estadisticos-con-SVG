@@ -7,9 +7,9 @@ const seleccionadorColorCSV2 = document.getElementById("seleccionadorColorCSV2")
 const seleccionadorColorCSV3 = document.getElementById("seleccionadorColorCSV3");
 
 //Colores predeterminados
-let colorSeleccionado1 = "#FF2D00";
-let colorSeleccionado2 = "#BE0000";
-let colorSeleccionado3 = "#61007F";
+let colorSeleccionado1 = "#8B0000"; //darkred
+let colorSeleccionado2 = "#8A2BE2"; //blueviolet
+let colorSeleccionado3 = "#3b3b3b";  //gris oscuro
 
 seleccionadorColorCSV1.addEventListener("input", function () {
     colorSeleccionado1 = seleccionadorColorCSV1.value;
@@ -191,7 +191,6 @@ function procesarCSV(contenido, nombreArchivo) {
         .attr("dy", "1em")
         .style("text-anchor", "middle")
         .style("font-size", "14px")
-        // .style("fill", "#777")
         .style("font-family", "sans-serif")
         .text("Valores");
 
@@ -318,10 +317,18 @@ function procesarCSV(contenido, nombreArchivo) {
 
     document.querySelector("#textAreaCSV").value = html.trim();
 
-    //Copiar código SVG al portapapeles
+    // Copiar código SVG al portapapeles
     button.addEventListener("click", () => {
         textarea.select();
-        document.execCommand("copy");
+        navigator.clipboard.writeText(textarea.value)
+            .then(() => {
+                console.log("El código SVG del gráfico de líneas desde CSV se ha copiado al portapapeles.");
+                // Puedes mostrar un mensaje de éxito u otra acción después de copiar al portapapeles
+            })
+            .catch((error) => {
+                console.error("Error al copiar el código SVG al portapapeles:", error);
+                // Puedes mostrar un mensaje de error u otra acción en caso de error
+            });
     });
     //Limpiar código SVG del área de texto
     botonLimpiar.addEventListener('click', () => {

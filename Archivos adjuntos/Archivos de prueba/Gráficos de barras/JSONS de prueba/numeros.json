@@ -1,0 +1,30 @@
+[
+    {
+        "tipo": 1,
+        "cantidad": 500
+    },
+    {
+        "tipo": 2,
+        "cantidad": 670
+    },
+    {
+        "tipo": 3,
+        "cantidad": 800
+    },
+    {
+        "tipo": 4.09,
+        "cantidad": 75.9
+    },
+    {
+        "tipo": 5,
+        "cantidad": 502
+    },
+    {
+        "tipo": 6,
+        "cantidad": 510
+    },
+    {
+        "tipo": 7,
+        "cantidad": 100
+    }
+]

@@ -1,29 +1,4 @@
-numGraficos = 0;
-var anchura = 960,
-    altura = 500,
-    radio = Math.min(anchura, altura) / 2;
-
-//Colores, si hay más de 10 datos, se rotan desde el principo
-var color = d3.scaleOrdinal()
-    .range(['blue', 'green', 'red', 'yellow', 'blueviolet', 'black', 'aqua', 'darkorange', 'deeppink', 'gray']);
-
-//arco
-var arc = d3.arc()
-    .outerRadius(radio - 10)
-    .innerRadius(radio - 70);
-//Grafico de donut
-var graficoDonut = d3.pie()
-    .sort(null)
-    .value(function (d) { return d[Object.keys(d)[1]]; }); //segunda columna (valor)
-
-//Creación del SVG
-var svg = d3.select("#graficoDonutCSV")
-    .attr("width", anchura)
-    .attr("height", altura)
-    .append("g")
-    .attr("transform", "translate(" + anchura / 2 + "," + altura / 2 + ")");
-
-
+var numGraficos = 0;
 //Descargar contenido SVG
 const textarea = document.getElementById('textAreaCSV');
 const botonDescargar = document.getElementById('botonDescargarCSV');
@@ -63,6 +38,31 @@ function cargarArchivoCSV() {
 function procesarCSV(contenido, nombreArchivo) {
 
     numGraficos = numGraficos + 1;
+
+    var anchura = 960,
+        altura = 500,
+        radio = Math.min(anchura, altura) / 2;
+
+    //Colores, si hay más de 10 datos, se rotan desde el principo
+    var color = d3.scaleOrdinal()
+        .range(['blue', 'green', 'red', 'yellow', 'blueviolet', 'black', 'aqua', 'darkorange', 'deeppink', 'gray']);
+
+    //arco
+    var arc = d3.arc()
+        .outerRadius(radio - 10)
+        .innerRadius(radio - 70);
+    //Grafico de donut
+    var graficoDonut = d3.pie()
+        .sort(null)
+        .value(function (d) { return d[Object.keys(d)[1]]; }); //segunda columna (valor)
+
+    //Creación del SVG
+    var svg = d3.select("#graficoDonutCSV")
+        .attr("width", anchura)
+        .attr("height", altura)
+        .append("g")
+        .attr("transform", "translate(" + anchura / 2 + "," + altura / 2 + ")");
+
     //Adaptar datos CSV
     const datos = d3.csvParse(contenido, type);
 
@@ -105,10 +105,18 @@ function procesarCSV(contenido, nombreArchivo) {
 
     document.querySelector("#textAreaCSV").value = html.trim();
 
-    //Copiar código SVG al portapapeles
+    // Copiar código SVG al portapapeles
     button.addEventListener("click", () => {
         textarea.select();
-        document.execCommand("copy");
+        navigator.clipboard.writeText(textarea.value)
+            .then(() => {
+                console.log("El código SVG del gráfico de donut desde CSV se ha copiado al portapapeles.");
+                // Puedes mostrar un mensaje de éxito u otra acción después de copiar al portapapeles
+            })
+            .catch((error) => {
+                console.error("Error al copiar el código SVG al portapapeles:", error);
+                // Puedes mostrar un mensaje de error u otra acción en caso de error
+            });
     });
     //Limpiar código SVG del área de texto
     botonLimpiar.addEventListener('click', () => {

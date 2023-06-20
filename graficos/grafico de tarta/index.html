@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Graficos de tarta</title>
+
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+
+  <link rel="stylesheet" href="../styleGraficos.css">
+  <link rel="stylesheet" href="styleGraficoTarta.css">
+  <link rel="icon" href="../../media/logo.png" />
+</head>
+
+<body>
+
+  <header>
+    <div class="titulo">
+      <h1>Gráficos estadísticos con SVG</h1>
+      <p>gráficos reescalables portables </p>
+    </div>
+    <div class="navegacion">
+
+      <form action="../../index.html">
+        <button> Inicio </button>
+      </form>
+      <form action="../graficos de barras/index.html">
+        <button> Gráficos de barras </button>
+      </form>
+      <form action="../grafico de lineas/index.html">
+        <button> Gráficos de líneas </button>
+      </form>
+      <form action="../grafico de donut/index.html">
+        <button> Gráficos de donut </button>
+      </form>
+    </div>
+
+  </header>
+
+
+  <div class="cuerpo">
+    <h1 class="tituloPrincipal">Gráficos de tarta</h1>
+    <h1>Generador de gráficos de tarta según la entrada introducida</h1>
+    <h2>Introduzca los valores para crear el gráfico de tarta:</h2>
+    <form id="formulario">
+      <label>Valor 1:</label>
+      <input type="number" value="0" id="valor1" min="0">
+      <br>
+      <label>Valor 2:</label>
+      <input type="number" value="0" id="valor2" min="0">
+      <br>
+      <label>Valor 3:</label>
+      <input type="number" value="0" id="valor3" min="0">
+      <br>
+      <label>Valor 4:</label>
+      <input type="number" value="0" id="valor4" min="0">
+      <br>
+      <label>Valor 5:</label>
+      <input type="number" value="0" id="valor5" min="0">
+      <br>
+
+      <label>Valor 6:</label>
+      <input type="number" value="0" id="valor6" min="0">
+      <br>
+      <label>Valor 7:</label>
+      <input type="number" value="0" id="valor7" min="0">
+      <br>
+      <label>Valor 8:</label>
+      <input type="number" value="0" id="valor8" min="0">
+      <br>
+      <label>Valor 9:</label>
+      <input type="number" value="0" id="valor9" min="0">
+      <br>
+      <label>Valor 10:</label>
+      <input type="number" value="0" id="valor10" min="0">
+      <br>
+
+      <button type="submit" class="botonGenerar" id="draw-button">Generar grafico</button>
+    </form>
+
+    <div id="chart-container">
+      <svg id="chart-svg" width="700" height="820" xmlns="http://www.w3.org/2000/svg">
+        <g id="chart">
+        </g>
+      </svg>
+    </div>
+
+    <textarea id="svg-code" style="width: 700px; height: 200px;"></textarea>
+    <button class="botonCopiar" id="copy-button">📋Copiar</button>
+    <button class="botonLimpiar" id="limpiar" type="button">🗑️Limpiar contenido</button>
+    <button id="descargar">⬇️ Descargar SVG</button>
+
+    <script src="script.js"></script>
+
+
+
+    <h1>Generador de gráficos de tarta según CSV</h1>
+
+    <div class="container">
+
+      <input type="file" id="archivoCSV" accept=".csv">
+      <button onclick="cargarArchivoCSV()" class="botonGenerar">Cargar archivo</button>
+      <div id="contenedorGraficoSVG">
+        <svg id="graficoTartaCSV" xmlns="http://www.w3.org/2000/svg"></svg>
+      </div>
+
+      <!-- Textarea, donde aparecerá el código SVG -->
+      <textarea id="textAreaCSV" style="width: 700px; height: 200px;"></textarea>
+      <!-- Botones -->
+      <button class="botonCopiar" id="botonCopiarCSV">📋Copiar</button>
+      <button class="botonLimpiar" id="botonLimpiarCSV">🗑️Limpiar contenido</button>
+      <button id="botonDescargarCSV">⬇️ Descargar SVG</button>
+      <script src="scriptCSV.js"></script>
+
+    </div>
+  </div>
+</body>
+
+</html>

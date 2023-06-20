@@ -1,62 +1,62 @@
-var videoEjemplo, reproducirVideo, barraVideo, progresoVideo, maximoVideo;
-maximoVideo = 1240; //100% del video
-
-
+var videoEjemplo, reproducirVideo, barraVideo, progresoVideo, maximoVideo, maximizarVideo;
+maximoVideo = 1240; //Tamaño en pixeles
 
 function comenzar() {
-    // Almacenamos en variables los elementos HTML
+    // Almacenar en variables los elementos HTML
     videoEjemplo = document.getElementById("videoEjemplo");
-
-
     reproducirVideo = document.getElementsByClassName("reproducir")[0];
     barraVideo = document.getElementsByClassName("barra")[0];
     progresoVideo = document.getElementsByClassName("progreso")[0];
+    maximizarVideo = document.getElementsByClassName("maximizar")[0];
 
-    //eventos para cuando se pulse un boton...
+    // Eventos para cuando se pulsa un botón...
     reproducirVideo.addEventListener("click", clicando, false);
     barraVideo.addEventListener("click", cambiando, false);
-
+    maximizarVideo.addEventListener("click", maximizar, false);
+}
+function actualizarBarraEnPantallaCompleta(event) {
+    if (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement) {
+        cambiando(event); // Actualizar la barra de progreso al entrar en pantalla completa
+    }
 }
 
 function clicando() {
     if ((videoEjemplo.paused == false) && (videoEjemplo.ended == false)) {
         videoEjemplo.pause();
         reproducirVideo.innerHTML = "▶️";
-    }
-    else {
+    } else {
         videoEjemplo.play();
         reproducirVideo.innerHTML = "⏸";
-
-        bucle = setInterval(estado, 30);//llama a la funcion estado cada 30ms
-
+        bucle = setInterval(estado, 50);
     }
 }
-
 
 function estado() {
     if (videoEjemplo.ended == false) {
-        // en que punto de la barra en determinado momento de reproducción
-        var total = parseInt(videoEjemplo.currentTime * maximoVideo / videoEjemplo.duration);
-        var aux = total - 2; //para que no se salga de la barra
-        progresoVideo.style.width = aux + "px";
+        var anchoBarra = barraVideo.offsetWidth; //Obtener el ancho de la barra contenedora
+        var total = Math.min(parseInt((videoEjemplo.currentTime / videoEjemplo.duration) * anchoBarra), anchoBarra);
 
-    }
-    else {
-        reproducirVideo.innerHTML = "⏯️";
+        progresoVideo.style.width = total + "px";
+    } else {
+        reproducirVideo.innerHTML = "🔁"; //Cambiar el valor del botón al final del vídeo
     }
 }
 
-//cambiar el tiempo de la barra del video
-function cambiando(posicion) {
-    // if ((videoEjemplo.ended == false)) {
-    var ratonX = posicion.pageX - barraVideo.offsetLeft;
-    var nuevoTiempo = ratonX * videoEjemplo.duration / maximoVideo;
+function cambiando(event) {
+    var ratonX = event.pageX - barraVideo.getBoundingClientRect().left;
+    var nuevoTiempo = ratonX * videoEjemplo.duration / barraVideo.offsetWidth;
 
-    videoEjemplo.currentTime = nuevoTiempo;
-    var aux = ratonX - 2;//para que no se salga de la barra
-    progresoVideo.style.width = ratonX + "px";
-    // }
+    if (isFinite(nuevoTiempo)) {
+        videoEjemplo.currentTime = nuevoTiempo;
+        var porcentajeProgreso = (ratonX / barraVideo.offsetWidth) * 100;
+        progresoVideo.style.width = porcentajeProgreso + "%";
+    }
 }
 
+function maximizar() {
+    if (videoEjemplo.requestFullscreen) {
+        videoEjemplo.requestFullscreen();
+    }
+}
 
 window.addEventListener("load", comenzar, false);

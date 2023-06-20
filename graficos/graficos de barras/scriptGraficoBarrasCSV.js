@@ -29,6 +29,7 @@ function cargarArchivoCSV() {
     var input = document.getElementById('archivoCSV');
     var file = input.files[0];
     var reader = new FileReader();
+    reader.readAsText(file);
     reader.onload = function (e) {
         var contenido = e.target.result;
         // Se obtiene el nombre del archivo, para poder luego usarlo como título
@@ -36,11 +37,10 @@ function cargarArchivoCSV() {
         d3.select("#graficoBarras").selectAll("*").remove();
         procesarCSV(contenido, nombreArchivo);
     };
-    reader.readAsText(file);
 }
 
-// Crear función de análisis de fechas
-var parseDate = d3.time.format("%d-%m-%Y").parse;
+// // Crear función de análisis de fechas
+// var parseDate = d3.time.format("%d-%m-%Y").parse;
 
 // Procesar el archivo CSV para generar el gráfico de barras
 function procesarCSV(contenido, nombreArchivo) {
@@ -59,9 +59,9 @@ function procesarCSV(contenido, nombreArchivo) {
         } else if (index === 1) {
             tipo = 2; //La primera columna son numeros
         }
+        return { fecha: fecha, valor: valor };
         // console.log(fecha);
         // console.log(valor);
-        return { fecha: fecha, valor: valor };
     });
 
     //    console.log(tipo);
@@ -72,11 +72,9 @@ function procesarCSV(contenido, nombreArchivo) {
     const altura = 600 - margenes.arriba - margenes.abajo;
     // Escalas y ejes
     var x = d3.scale.ordinal().rangeRoundBands([0, anchura], 0.05);
-    var y = d3.scale.linear().range([altura, 0]);
+    var y = d3.scale.linear().range([altura + 5, 0]);
     var ejeX = d3.svg.axis().scale(x).orient("bottom");
     var ejeY = d3.svg.axis().scale(y).orient("left").ticks(10);
-
-
 
     //Valores de dominio para las escalas
     x.domain(datos.map(function (d) { return d.fecha; }));
@@ -92,7 +90,7 @@ function procesarCSV(contenido, nombreArchivo) {
     //Agregar ejes al gráfico SVG
     svg.append("g")
         .attr("class", "x axis")
-        .attr("transform", "translate(0," + altura + ")")
+        .attr("transform", "translate(0," + (altura + 5) + ")")
         .call(ejeX)
         .selectAll("text")
         .style("text-anchor", "end")
@@ -116,7 +114,9 @@ function procesarCSV(contenido, nombreArchivo) {
         .attr("x", function (d) { return x(d.fecha); })
         .attr("width", x.rangeBand())
         .attr("y", function (d) { return y(d.valor); })
-        .attr("height", function (d) { return altura - y(d.valor); });
+        .attr("height", function (d) { return altura - y(d.valor); })
+        .attr("fill", colorSeleccionado1)
+        .attr("stroke", colorSeleccionado3);
 
     // Agregar título al gráfico
     svg.append("text")
@@ -126,38 +126,27 @@ function procesarCSV(contenido, nombreArchivo) {
         .style("font-size", "16px")
         .text(nombreArchivo);
 
-    //Guardar el estilo del gráfico SVG    
-    var estilo = document.createElementNS("http://www.w3.org/2000/svg", "style");
-    estilo.setAttribute('id', 'mi-estilo');
-    var css = `
-            //svg {
-              //  border: 1px dashed #000000;
-            //}
-            rect {
-                stroke: ${colorSeleccionado3};
-                stroke-width: 2;
-                fill: ${colorSeleccionado1}  ;
-            }
-            rect:hover {
-                fill:  ${colorSeleccionado2} ;
-            }
-            .eje text{
-                font: 10px sans-serif;
-            }       
-            .eje path, .eje line {
-                fill: none;
-                stroke: #000;
-                shape-rendering: crispEdges;
-            }
-            .axis path,
-            .axis line {
-            fill: none;
-            stroke: #000;
-            shape-rendering: crispEdges;
-            }`;
-    estilo.innerHTML = css;
-    //Añadir al SVG         
-    svg.append('style').text(css);
+    //Aregar css
+    var css = `#graficoBarras rect:hover {
+    fill: ${colorSeleccionado2};
+}
+#graficoBarras .eje path,
+#graficoBarras .eje line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+#graficoBarras .axis path,
+#graficoBarras .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}`;
+
+    // Añadir estilos al SVG específico
+    d3.select("#graficoBarras")
+        .append("style")
+        .text(css);
 
     //Mostrar el código SVG calculado
     const element = document.querySelector("#contenedorGrafico");
@@ -168,10 +157,18 @@ function procesarCSV(contenido, nombreArchivo) {
 
     document.querySelector("#textAreaCSV").value = html.trim();
 
-    //Copiar código SVG al portapapeles
+    // Copiar código SVG al portapapeles
     button.addEventListener("click", () => {
         textarea.select();
-        document.execCommand("copy");
+        navigator.clipboard.writeText(textarea.value)
+            .then(() => {
+                console.log("El código SVG del gráfico de barras desde CSV se ha copiado al portapapeles.");
+                // Puedes mostrar un mensaje de éxito u otra acción después de copiar al portapapeles
+            })
+            .catch((error) => {
+                console.error("Error al copiar el código SVG al portapapeles:", error);
+                // Puedes mostrar un mensaje de error u otra acción en caso de error
+            });
     });
     //Limpiar código SVG del área de texto
     botonLimpiar.addEventListener('click', () => {

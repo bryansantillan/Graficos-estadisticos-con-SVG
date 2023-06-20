@@ -1,0 +1,70 @@
+[
+    {
+        "tipo": "naranja",
+        "cantidad": 11
+    },
+    {
+        "tipo": "manzana",
+        "cantidad": 15
+    },
+    {
+        "tipo": "plátano",
+        "cantidad": 20
+    },
+    {
+        "tipo": "pera",
+        "cantidad": 12
+    },
+    {
+        "tipo": "limón",
+        "cantidad": 22
+    },
+    {
+        "tipo": "cereza",
+        "cantidad": 16
+    },
+    {
+        "tipo": "mandarina",
+        "cantidad": 9
+    },
+    {
+        "tipo": "arándano",
+        "cantidad": 11
+    },
+    {
+        "tipo": "uva",
+        "cantidad": 25
+    },
+    {
+        "tipo": "sandía",
+        "cantidad": 8
+    },
+    {
+        "tipo": "mango",
+        "cantidad": 18
+    },
+    {
+        "tipo": "kiwi",
+        "cantidad": 3
+    },
+    {
+        "tipo": "fresa",
+        "cantidad": 30
+    },
+    {
+        "tipo": "piña",
+        "cantidad": 14
+    },
+    {
+        "tipo": "melón",
+        "cantidad": 6
+    },
+    {
+        "tipo": "kiwano",
+        "cantidad": 3
+    },
+    {
+        "tipo": "granada",
+        "cantidad": 7
+    }
+]

@@ -3,7 +3,6 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styleGraficos.css">
     <link rel="stylesheet" href="style.css">
@@ -27,7 +26,7 @@
             <form action="../../index.html">
                 <button> Inicio </button>
             </form>
-            <form action="../grafico de tarta/graficostarta.html">
+            <form action="../grafico de tarta/index.html">
                 <button> Gráficos de tarta </button>
             </form>
             <form action="../grafico de lineas/index.html">
@@ -39,35 +38,36 @@
         </div>
     </header>
 
-    <h1 class="tituloPrincipal">Gráfico de barras</h1>
+    <h1 class="tituloPrincipal">Gráficos de barras</h1>
+    <!-- Seleccion de color -->
     <div id="colores">
+        <!-- Códigos de colores equivalentes a blueviolet, darkorange y yellow -->
         <form>
             <h3 style="color: black">Escoja los colores del gráfico:</h3>
             <div>
-                <label for="colorPicker"> Selecciona un color principal:</label>
-                <input type="color" id="seleccionadorColorJSON1">
+                <label for="colorPicker"> Seleccione un color principal:</label>
+                <input type="color" id="seleccionadorColor1" value="#8A2BE2">
             </div>
 
             <div>
-                <label for="colorPicker"> Selecciona un color secundario:</label>
-                <input type="color" id="seleccionadorColorJSON2">
+                <label for="colorPicker"> Seleccione un color secundario:</label>
+                <input type="color" id="seleccionadorColor2" value="#FF8C00">
             </div>
             <div>
-                <label for="colorPicker"> Selecciona un color para los bordes:</label>
-                <input type="color" id="seleccionadorColorJSON3">
+                <label for="colorPicker"> Seleccione un color para los bordes:</label>
+                <input type="color" id="seleccionadorColor3" value="#FFFF00">
             </div>
         </form>
     </div>
 
     <div class="cuerpo">
-
         <h1>Generador de gráfico de barras desde un archivo JSON</h1>
         <!-- Cargar el fichero JSON -->
         <input type="file" id="archivo" accept=".json" class="custom-file-input">
         <button onclick="cargarArchivoJSON()" class="botonGenerar">Cargar archivo</button>
         <!-- El gráfico SVG se dibujará aquí -->
         <div id="contenedorGraficoSVG">
-            <svg xmlns="http://www.w3.org/2000/svg"></svg>
+            <svg id="graficoJSON" xmlns="http://www.w3.org/2000/svg"></svg>
         </div>
         <!-- Textarea, donde aparecerá el código SVG -->
         <textarea id="textAreaJSON" style="width: 700px; height: 200px;"></textarea>
@@ -78,8 +78,7 @@
         <script src="script.js"></script>
 
 
-        <h1>Generador de gráfico de barras según CSV</h1>
-
+        <h1>Generador de gráfico de barras un archivo CSV</h1>
 
         <input type="file" id="archivoCSV" accept=".csv">
         <button onclick="cargarArchivoCSV()" class="botonGenerar">Cargar archivo</button>
@@ -94,7 +93,6 @@
         <button id="botonDescargarCSV">⬇️ Descargar SVG</button>
 
         <script src="scriptGraficoBarrasCSV.js"></script>
-
 
 
         <h1>Generador de gráfico de barras según la entrada introducida</h1>
@@ -117,7 +115,8 @@
                 <option value="14">14</option>
                 <option value="15">15</option>
             </select>
-
+            <p>Introduzca los valores para crear el gráfico de barras:</p>
+            <!-- Donde se crearan los cuadros -->
             <div id="entradas"></div>
             <br><br>
             <button class="botonGenerar" id="botonGenerarSimple">Generar gráfico</button>

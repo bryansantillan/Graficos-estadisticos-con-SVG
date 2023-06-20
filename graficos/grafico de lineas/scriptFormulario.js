@@ -20,7 +20,6 @@ const valor13Input = document.getElementById('valor13');
 const valor14Input = document.getElementById('valor14');
 const valor15Input = document.getElementById('valor15');
 
-// const svg = document.getElementById('chart');
 const areatext = document.getElementById('svg-code');
 //Descargar SVG
 const botonDescarga = document.getElementById('descargar');
@@ -116,15 +115,8 @@ function generarGrafico(event) {
         for (let i = 1; i <= valoresDistintosDeCero.length; i++) {
             arrayX.push(i);
         }
-
-        // EjeX = arrayX
-        // EjeY = valores
-        // alert(arrayX);
-        // alert(valores);
-
         //Se quitan los valores que sean 0 de valor
         valores = valores.filter(valor => valor !== 0);
-
         //Se unen ambos array en datos
         const datos = arrayX.map((x, i) => ({ x: x, y: valores[i] }));
 
@@ -160,6 +152,7 @@ function generarGrafico(event) {
         x.domain(d3.extent(arrayX));
         y.domain([0, d3.max(valores)]);
 
+        //Eje X
         svg.append("g")
             .attr("transform", `translate(0,${altura})`)
             .style("font-size", "12px")
@@ -172,7 +165,6 @@ function generarGrafico(event) {
             .style("text-anchor", "start")
             .style("alignment-baseline", "middle")
             .attr("x", 5)
-
 
         //Lineas verticales
         svg.selectAll("xGrid")
@@ -327,10 +319,18 @@ function generarGrafico(event) {
         //Mostrar código SVG en textarea
         document.querySelector("#svg-code").value = html.trim();
 
-        //Copiar código SVG al portapapeles
+        // Copiar código SVG al portapapeles
         button.addEventListener("click", () => {
-            areatext.select();
-            document.execCommand("copy");
+            textarea.select();
+            navigator.clipboard.writeText(textarea.value)
+                .then(() => {
+                    console.log("El código SVG del gráfico de líneas desde entrada se ha copiado al portapapeles.");
+                    // Puedes mostrar un mensaje de éxito u otra acción después de copiar al portapapeles
+                })
+                .catch((error) => {
+                    console.error("Error al copiar el código SVG al portapapeles:", error);
+                    // Puedes mostrar un mensaje de error u otra acción en caso de error
+                });
         });
         //Limpiar código SVG de textarea
         botonLimpiar.addEventListener('click', () => {

@@ -52,7 +52,7 @@ function generarGrafico(event) {
   textarea.value = '';
 
   svg.innerHTML = "";
-  event.preventDefault();
+  event.preventDefault();//prevenir el comportamiento preestablecido del botón del formulario
 
   //Convertir los valores numéricos del formulario
   const valor1 = parseInt(valor1Input.value);
@@ -295,7 +295,7 @@ function generarGrafico(event) {
     const colores = ['blue', 'green', 'red', 'yellow', 'blueviolet', 'black', 'aqua', 'orange', 'deeppink', 'gray'];
     //Quitar valores que sean 0
     const finales = valores.reduce((sum, valor) => sum + valor, 0);
-    //Porciones de cada sección en porcentaje, redondeando con 3 decimales
+    //Cada sección en porcentaje, redondeando con 3 decimales
     const porciones = valores.map(valor => ((valor / finales) * 100).toFixed(3));
 
     // Array de datos de los textos
@@ -326,7 +326,6 @@ function generarGrafico(event) {
     rectElement.setAttribute("fill", "lightgray");
     svg.appendChild(rectElement);
 
-
     // Agrega los elementos <text> al SVG con los colores correspondientes
     leyenda.forEach((data, index) => {
       const textElement = document.createElementNS("http://www.w3.org/2000/svg", "text");
@@ -350,11 +349,19 @@ function generarGrafico(event) {
     //Mostrar código SVG en textarea
     document.querySelector("#svg-code").value = html.trim();
 
-    //Copiar código SVG al portapapeles
+    // Copiar código SVG al portapapeles
     button.addEventListener("click", () => {
       textarea.select();
-      document.execCommand("copy");
+      navigator.clipboard.writeText(textarea.value)
+        .then(() => {
+          console.log("El código SVG del gráfico de tarta desde entrada se ha copiado al portapapeles.");
+        })
+        .catch((error) => {
+          console.error("Error al copiar el código SVG al portapapeles:", error);
+          // Puedes mostrar un mensaje de error u otra acción en caso de error
+        });
     });
+
     //Limpiar código SVG de textarea
     botonLimpiar.addEventListener('click', () => {
       textarea.value = '';

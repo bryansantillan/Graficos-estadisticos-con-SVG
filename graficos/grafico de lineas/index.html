@@ -3,32 +3,29 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
     <title>Graficos de lineas</title>
     <link rel="stylesheet" href="../styleGraficos.css">
-    <!-- <link rel="stylesheet" href="style.css"> -->
     <link rel="stylesheet" href="styleGraficoLinea.css">
     <link rel="icon" href="../../media/logo.png" />
-
 </head>
 
 <body>
-
     <header>
         <div class="titulo">
             <h1>Gráficos estadísticos con SVG</h1>
             <p>gráficos reescalables portables </p>
         </div>
         <div class="navegacion">
-
             <form action="../../index.html">
                 <button> Inicio </button>
             </form>
             <form action="../graficos de barras/index.html">
                 <button> Gráficos de barras </button>
             </form>
-            <form action="../grafico de tarta/graficostarta.html">
+            <form action="../grafico de tarta/index.html">
                 <button> Gráficos de tarta </button>
             </form>
             <form action="../grafico de donut/index.html">
@@ -37,120 +34,117 @@
         </div>
     </header>
 
+    <div class="cuerpo">
+        <h1 class="tituloPrincipal">Gráficos de líneas</h1>
+        <div id="colores">
 
-    <h1 class="tituloPrincipal">Gráficos de líneas</h1>
-    <div id="colores">
-        <form>
-            <h3 style="color: black">Escoja los colores del gráfico:</h3>
-            <div>
-                <label for="colorPicker"> Seleccione el color de la línea principal:</label>
-                <input type="color" id="seleccionadorColorCSV1">
+            <!-- Códigos de colores equivalentes a darkred, blueviolet y gris oscuro -->
+            <form>
+                <h3 style="color: black">Escoja los colores del gráfico:</h3>
+                <div>
+                    <label for="colorPicker"> Seleccione el color de la línea principal:</label>
+                    <input type="color" id="seleccionadorColorCSV1" value="#8B0000">
+                </div>
+
+                <div>
+                    <label for="colorPicker"> Seleccione el color de los círculos de las coordenadas:</label>
+                    <input type="color" id="seleccionadorColorCSV2" value="#8A2BE2">
+                </div>
+                <div>
+                    <label for="colorPicker"> Seleccione el color del tooltip:</label>
+                    <input type="color" id="seleccionadorColorCSV3" value="#3b3b3b">
+                </div>
+            </form>
+        </div>
+
+        <h1>Generador de gráficos de líneas desde un archivo CSV</h1>
+
+        <div class="container">
+            <input type="file" id="archivoCSV" accept=".csv">
+            <button onclick="cargarArchivoCSV()" class="botonGenerar">Cargar archivo</button>
+            <div id="contenedorGraficoSVG">
+                <svg id="graficoLinea" xmlns="http://www.w3.org/2000/svg"></svg>
             </div>
 
-            <div>
-                <label for="colorPicker"> Seleccione el color de los círculos de las coordenadas:</label>
-                <input type="color" id="seleccionadorColorCSV2">
-            </div>
-            <div>
-                <label for="colorPicker"> Seleccione el color del tooltip:</label>
-                <input type="color" id="seleccionadorColorCSV3">
-            </div>
-        </form>
-    </div>
-
-    <h1>Generador de gráficos de líneas según CSV</h1>
-
-    <div class="container">
-
-        <input type="file" id="archivoCSV" accept=".csv">
-        <button onclick="cargarArchivoCSV()" class="botonGenerar">Cargar archivo</button>
-        <div id="contenedorGraficoSVG">
-            <svg id="graficoLinea" xmlns="http://www.w3.org/2000/svg"></svg>
+            <!-- Textarea, donde aparecerá el código SVG -->
+            <textarea id="textAreaCSV" style="width: 700px; height: 200px;"></textarea>
+            <!-- Botones -->
+            <button class="botonCopiar" id="botonCopiarCSV">📋Copiar</button>
+            <button class="botonLimpiar" id="botonLimpiarCSV">🗑️Limpiar contenido</button>
+            <button id="botonDescargarCSV">⬇️ Descargar SVG</button>
+            <script src="script.js"></script>
 
         </div>
-        <div id="tooltip"></div>
-        <script src="https://d3js.org/d3.v7.min.js"></script>
-        <!-- Textarea, donde aparecerá el código SVG -->
-        <textarea id="textAreaCSV" style="width: 700px; height: 200px;"></textarea>
-        <!-- Botones -->
-        <button class="botonCopiar" id="botonCopiarCSV">📋Copiar</button>
-        <button class="botonLimpiar" id="botonLimpiarCSV">🗑️Limpiar contenido</button>
-        <button id="botonDescargarCSV">⬇️ Descargar SVG</button>
-        <script src="script.js"></script>
 
-    </div>
+        <h1>Generador de gráficos de líneas según la entrada introducida</h1>
+        <h2>Introduzca los valores para crear el gráfico de líneas:</h2>
+        <div class="container">
+            <form id="formulario">
+                <label>Valor 1:</label>
+                <input type="number" value="0" id="valor1" min="0">
+                <br>
+                <label>Valor 2:</label>
+                <input type="number" value="0" id="valor2" min="0">
+                <br>
+                <label>Valor 3:</label>
+                <input type="number" value="0" id="valor3" min="0">
+                <br>
+                <label>Valor 4:</label>
+                <input type="number" value="0" id="valor4" min="0">
+                <br>
+                <label>Valor 5:</label>
+                <input type="number" value="0" id="valor5" min="0">
+                <br>
 
-    <h1>Generador de gráficos de líneas según entrada</h1>
+                <label>Valor 6:</label>
+                <input type="number" value="0" id="valor6" min="0">
+                <br>
+                <label>Valor 7:</label>
+                <input type="number" value="0" id="valor7" min="0">
+                <br>
+                <label>Valor 8:</label>
+                <input type="number" value="0" id="valor8" min="0">
+                <br>
+                <label>Valor 9:</label>
+                <input type="number" value="0" id="valor9" min="0">
+                <br>
+                <label>Valor 10:</label>
+                <input type="number" value="0" id="valor10" min="0">
+                <br>
 
-    <div class="container">
-        <form id="formulario">
-            <label>Valor 1:</label>
-            <input type="number" value="0" id="valor1" min="0">
-            <br>
-            <label>Valor 2:</label>
-            <input type="number" value="0" id="valor2" min="0">
-            <br>
-            <label>Valor 3:</label>
-            <input type="number" value="0" id="valor3" min="0">
-            <br>
-            <label>Valor 4:</label>
-            <input type="number" value="0" id="valor4" min="0">
-            <br>
-            <label>Valor 5:</label>
-            <input type="number" value="0" id="valor5" min="0">
-            <br>
+                <label>Valor 11:</label>
+                <input type="number" value="0" id="valor11" min="0">
+                <br>
+                <label>Valor 12:</label>
+                <input type="number" value="0" id="valor12" min="0">
+                <br>
+                <label>Valor 13:</label>
+                <input type="number" value="0" id="valor13" min="0">
+                <br>
+                <label>Valor 14:</label>
+                <input type="number" value="0" id="valor14" min="0">
+                <br>
+                <label>Valor 15:</label>
+                <input type="number" value="0" id="valor15" min="0">
+                <br>
 
-            <label>Valor 6:</label>
-            <input type="number" value="0" id="valor6" min="0">
-            <br>
-            <label>Valor 7:</label>
-            <input type="number" value="0" id="valor7" min="0">
-            <br>
-            <label>Valor 8:</label>
-            <input type="number" value="0" id="valor8" min="0">
-            <br>
-            <label>Valor 9:</label>
-            <input type="number" value="0" id="valor9" min="0">
-            <br>
-            <label>Valor 10:</label>
-            <input type="number" value="0" id="valor10" min="0">
-            <br>
+                <button type="submit" class="botonGenerar" id="draw-button">Generar grafico</button>
+            </form>
 
-            <label>Valor 11:</label>
-            <input type="number" value="0" id="valor11" min="0">
-            <br>
-            <label>Valor 12:</label>
-            <input type="number" value="0" id="valor12" min="0">
-            <br>
-            <label>Valor 13:</label>
-            <input type="number" value="0" id="valor13" min="0">
-            <br>
-            <label>Valor 14:</label>
-            <input type="number" value="0" id="valor14" min="0">
-            <br>
-            <label>Valor 15:</label>
-            <input type="number" value="0" id="valor15" min="0">
-            <br>
+            <div id="chart-container" width="1400" height="700">
+                <svg id="svg-chart" width="1200" height="500" xmlns="http://www.w3.org/2000/svg">
+                </svg>
+            </div>
 
-            <button type="submit" class="botonGenerar" id="draw-button">Generar grafico</button>
-        </form>
 
-        <div id="chart-container" width="1400" height="700">
-            <svg id="svg-chart" width="1200" height="500" viewBox="0 0 1200 500" xmlns="http://www.w3.org/2000/svg">
-            </svg>
+            <textarea id="svg-code" style="width: 800px; height: 200px;"></textarea>
+            <button class="botonCopiar" id="copy-button">📋Copiar</button>
+            <button class="botonLimpiar" id="limpiar" type="button">🗑️Limpiar contenido</button>
+            <button id="descargar">⬇️ Descargar SVG</button>
 
+            <script src="scriptFormulario.js"></script>
         </div>
-        <div id="tooltip"></div>
-        <script src="https://d3js.org/d3.v7.min.js"></script>
-
-        <textarea id="svg-code" style="width: 800px; height: 200px;"></textarea>
-        <button class="botonCopiar" id="copy-button">📋Copiar</button>
-        <button class="botonLimpiar" id="limpiar" type="button">🗑️Limpiar contenido</button>
-        <button id="descargar">⬇️ Descargar SVG</button>
-
-        <script src="scriptFormulario.js"></script>
     </div>
-
 </body>
 
 </html>

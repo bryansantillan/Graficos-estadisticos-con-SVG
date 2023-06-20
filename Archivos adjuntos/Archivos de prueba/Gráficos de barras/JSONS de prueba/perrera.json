@@ -1,0 +1,26 @@
+[
+    {
+        "Raza": "galgo",
+        "cantidad": 12
+    },
+    {
+        "Raza": "pitbull",
+        "cantidad": 30
+    },
+    {
+        "Raza": "labrador",
+        "cantidad": 20
+    },
+    {
+        "Raza": "pastor alemán",
+        "cantidad": 15
+    },
+    {
+        "Raza": "chihuahua",
+        "cantidad": 8
+    },
+    {
+        "Raza": "bulldog",
+        "cantidad": 25
+    }
+]

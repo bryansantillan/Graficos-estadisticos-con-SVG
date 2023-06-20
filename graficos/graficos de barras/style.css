@@ -1,17 +1,3 @@
-svg {
-  border: 1px dashed #000000;
-}
-
-rect {
-  stroke: blueviolet;
-  stroke-width: 2;
-  fill: rgb(226, 164, 255);
-}
-
-rect:hover {
-  fill: rgb(240, 255, 143);
-}
-
 .eje text {
   font: 10px sans-serif;
 }
@@ -34,16 +20,6 @@ rect:hover {
   border-radius: 4px;
 
 }
-
-.custom-file-input::-webkit-file-upload-button {
-  background-color: blueviolet;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
 
 #archivo {
   margin-top: 20px;
@@ -90,4 +66,9 @@ textarea {
   border: 1px solid #ccc;
   border-radius: 4px;
   resize: none;
+}
+
+#descargarSencillo {
+  margin-bottom: 70px;
+
 }
