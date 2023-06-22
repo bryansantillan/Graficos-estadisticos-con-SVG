@@ -321,8 +321,8 @@ function generarGrafico(event) {
 
         // Copiar código SVG al portapapeles
         button.addEventListener("click", () => {
-            textarea.select();
-            navigator.clipboard.writeText(textarea.value)
+            areatext.select();
+            navigator.clipboard.writeText(areatext.value)
                 .then(() => {
                     console.log("El código SVG del gráfico de líneas desde entrada se ha copiado al portapapeles.");
                     // Puedes mostrar un mensaje de éxito u otra acción después de copiar al portapapeles
@@ -338,5 +338,3 @@ function generarGrafico(event) {
         });
     }
 }
-
-
